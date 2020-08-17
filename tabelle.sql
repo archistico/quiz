@@ -1,0 +1,14 @@
+CREATE TABLE `esame` (
+	`id`	INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,
+	`nome`	TEXT NOT NULL,
+	`materia`	TEXT NOT NULL,
+	`fattoil`	TEXT NOT NULL
+);
+
+CREATE TABLE `esamedomande` (
+	`id`	INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,
+	`idesame`	INTEGER NOT NULL,
+	`iddomanda`	INTEGER NOT NULL,
+	`ordine`	TEXT NOT NULL,
+	`risposta`	INTEGER
+);

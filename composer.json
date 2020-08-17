@@ -1,0 +1,12 @@
+{
+    "name": "archistico/domande",
+    "authors": [
+        {
+            "name": "archistico",
+            "email": "info@archistico.com"
+        }
+    ],
+    "require": {
+        "bcosca/fatfree-core": "^3.7"
+    }
+}

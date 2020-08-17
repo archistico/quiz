@@ -1,0 +1,8 @@
+<form action="/">
+    <p>{{ @domanda }}?</p>
+    <repeat group="{{ @risposte }}" value="{{ @risposta }}">
+        <input type="radio" id="{{ @risposta.id }}" name="risposta" value="">
+        <label for="{{ @risposta.id }}">{{ @risposta.testo }}</label><br>
+    </repeat>
+  </form>
+

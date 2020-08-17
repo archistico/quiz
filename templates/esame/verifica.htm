@@ -1,0 +1,116 @@
+<h2>Esame di {{ @nome }} del {{ @fattoil }}</h2>
+<h3>Voto finale: {{ @votazione }}</h3>
+<hr>
+<h4>Domande e risposte</h4>
+<table>
+    <repeat group="{{ @domande }}" value="{{ @d }}">
+        <tr>
+            <td>#{{ @d.numero }}</td>
+            <td><strong>Domanda: {{ @d.domanda }}?</strong></td>
+        </tr>
+        <tr>
+            <td></td>
+            <check if="{{ @d.risposta0==@d.risposta_corretta }}">
+                <true>
+                    <check if="{{ @d.risposta0==@d.risposta }}">
+                        <true>
+                            <td class="bg-success">Risposta: {{ @d.risposta0 }}</td>
+                        </true>
+                        <false>
+                            <td class="bg-success">Risposta: {{ @d.risposta0 }}</td>
+                        </false>
+                    </check>
+                </true>
+                <false>
+                    <check if="{{ @d.risposta0==@d.risposta }}">
+                        <true>
+                            <td class="bg-danger">Risposta: {{ @d.risposta0 }}</td>
+                        </true>
+                        <false>
+                            <td>Risposta: {{ @d.risposta0 }}</td>
+                        </false>
+                    </check>
+                </false>
+            </check>            
+        </tr>
+        <tr>
+            <td></td>
+            <check if="{{ @d.risposta1==@d.risposta_corretta }}">
+                <true>
+                    <check if="{{ @d.risposta1==@d.risposta }}">
+                        <true>
+                            <td class="bg-success">Risposta: {{ @d.risposta1 }}</td>
+                        </true>
+                        <false>
+                            <td class="bg-success">Risposta: {{ @d.risposta1 }}</td>
+                        </false>
+                    </check>
+                </true>
+                <false>
+                    <check if="{{ @d.risposta1==@d.risposta }}">
+                        <true>
+                            <td class="bg-danger">Risposta: {{ @d.risposta1 }}</td>
+                        </true>
+                        <false>
+                            <td>Risposta: {{ @d.risposta1 }}</td>
+                        </false>
+                    </check>
+                </false>
+            </check>
+        </tr>
+        <tr>
+            <td></td>
+            <check if="{{ @d.risposta2==@d.risposta_corretta }}">
+                <true>
+                    <check if="{{ @d.risposta2==@d.risposta }}">
+                        <true>
+                            <td class="bg-success">Risposta: {{ @d.risposta2 }}</td>
+                        </true>
+                        <false>
+                            <td class="bg-success">Risposta: {{ @d.risposta2 }}</td>
+                        </false>
+                    </check>
+                </true>
+                <false>
+                    <check if="{{ @d.risposta2==@d.risposta }}">
+                        <true>
+                            <td class="bg-danger">Risposta: {{ @d.risposta2 }}</td>
+                        </true>
+                        <false>
+                            <td>Risposta: {{ @d.risposta2 }}</td>
+                        </false>
+                    </check>
+                </false>
+            </check>
+        </tr>
+        <tr>
+            <td></td>
+            <check if="{{ @d.risposta3==@d.risposta_corretta }}">
+                <true>
+                    <check if="{{ @d.risposta3==@d.risposta }}">
+                        <true>
+                            <td class="bg-success">Risposta: {{ @d.risposta3 }}</td>
+                        </true>
+                        <false>
+                            <td class="bg-success">Risposta: {{ @d.risposta3 }}</td>
+                        </false>
+                    </check>
+                </true>
+                <false>
+                    <check if="{{ @d.risposta3==@d.risposta }}">
+                        <true>
+                            <td class="bg-danger">Risposta: {{ @d.risposta3 }}</td>
+                        </true>
+                        <false>
+                            <td>Risposta: {{ @d.risposta3 }}</td>
+                        </false>
+                    </check>
+                </false>
+            </check>
+        </tr>
+        <tr>
+            <td></td>
+            <td>{{ @d.verifica }}</td>
+        </tr>
+    </repeat>
+</table>
