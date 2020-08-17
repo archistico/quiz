@@ -16,7 +16,7 @@ class Home
         }
 
         $f3->set('lista_esami', $lista_esami);
-        $f3->set('titolo', 'Home');
+        $f3->set('titolo', 'Quiz');
         $f3->set('contenuto', 'home/show.htm');
         echo \Template::instance()->render('templates/base.htm');
     }
