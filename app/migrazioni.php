@@ -211,4 +211,157 @@ class Migrazioni
 
         echo "ok";
     }
+
+    public function DomandeNomeProssimale($f3)
+    {
+        $this->db = (\App\Db::getInstance())->connect();
+        $this->db->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false);
+        $this->db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+
+        //----------- CREAZIONE DOMANDE -----------------
+
+        // Domande da nomi muscoli a gruppo
+        $sql = "SELECT * FROM muscoli WHERE prossimale IS NOT NULL AND prossimale != '' ORDER BY nome ASC";
+        $muscoli = $this->db->exec($sql);
+
+        //Utilita::DumpDie($muscoli);
+
+        $sql_gruppi = "SELECT prossimale FROM muscoli WHERE prossimale IS NOT NULL AND prossimale != '' GROUP BY prossimale ORDER BY prossimale ASC";
+        $gruppi = $this->db->exec($sql_gruppi);
+
+        $d = [];
+
+        for ($c = 0; $c < count($muscoli); $c++) {
+            $muscolo = $muscoli[$c]['nome'];
+            $rispostaesatta = $muscoli[$c]['prossimale'];
+
+            $gruppi_temp = [];
+            foreach ($gruppi as $g) {
+                if(!empty($g['prossimale'])) {
+                    $gruppi_temp[] = $g['prossimale'];
+                }                
+            }
+
+            // trova l'indice del gruppo del muscolo considerato
+            $indice_risposta_esatta = array_search($rispostaesatta, $gruppi_temp, true);
+            unset($gruppi_temp[$indice_risposta_esatta]);
+
+            shuffle($gruppi_temp);
+
+            $rispostaerrata1 = $gruppi_temp[0];
+            $rispostaerrata2 = $gruppi_temp[1];
+            $rispostaerrata3 = $gruppi_temp[2];
+            $d[] = new Domanda(0, "Qual è il prossimale del muscolo: '" . $muscolo . "'", $rispostaesatta, $rispostaerrata1, $rispostaerrata2, $rispostaerrata3);
+        }
+
+        foreach ($d as $domanda) {
+            $sql = sprintf('INSERT INTO domande VALUES (NULL, "%s", "%s", "%s", "%s", "%s");', $domanda->domanda, $domanda->rispostaesatta, $domanda->rispostaerrata1, $domanda->rispostaerrata2, $domanda->rispostaerrata3);
+            //echo $sql . "<br>";
+            $this->db->exec($sql);
+        }
+
+        echo "ok";
+    }
+
+    public function DomandeNomeNervo($f3)
+    {
+        $this->db = (\App\Db::getInstance())->connect();
+        $this->db->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false);
+        $this->db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+
+        //----------- CREAZIONE DOMANDE -----------------
+
+        // Domande da nomi muscoli a gruppo
+        $sql = "SELECT * FROM muscoli WHERE nervo IS NOT NULL AND nervo != '' ORDER BY nome ASC";
+        $muscoli = $this->db->exec($sql);
+
+        //Utilita::DumpDie($muscoli);
+
+        $sql_gruppi = "SELECT nervo FROM muscoli WHERE nervo IS NOT NULL AND nervo != '' GROUP BY nervo ORDER BY nervo ASC";
+        $gruppi = $this->db->exec($sql_gruppi);
+
+        $d = [];
+
+        for ($c = 0; $c < count($muscoli); $c++) {
+            $muscolo = $muscoli[$c]['nome'];
+            $rispostaesatta = $muscoli[$c]['nervo'];
+
+            $gruppi_temp = [];
+            foreach ($gruppi as $g) {
+                if(!empty($g['nervo'])) {
+                    $gruppi_temp[] = $g['nervo'];
+                }                
+            }
+
+            // trova l'indice del gruppo del muscolo considerato
+            $indice_risposta_esatta = array_search($rispostaesatta, $gruppi_temp, true);
+            unset($gruppi_temp[$indice_risposta_esatta]);
+
+            shuffle($gruppi_temp);
+
+            $rispostaerrata1 = $gruppi_temp[0];
+            $rispostaerrata2 = $gruppi_temp[1];
+            $rispostaerrata3 = $gruppi_temp[2];
+            $d[] = new Domanda(0, "Qual è il nervo del muscolo: '" . $muscolo . "'", $rispostaesatta, $rispostaerrata1, $rispostaerrata2, $rispostaerrata3);
+        }
+
+        foreach ($d as $domanda) {
+            $sql = sprintf('INSERT INTO domande VALUES (NULL, "%s", "%s", "%s", "%s", "%s");', $domanda->domanda, $domanda->rispostaesatta, $domanda->rispostaerrata1, $domanda->rispostaerrata2, $domanda->rispostaerrata3);
+            //echo $sql . "<br>";
+            $this->db->exec($sql);
+        }
+
+        echo "ok";
+    }
+
+    public function DomandeNomeFunzione($f3)
+    {
+        $this->db = (\App\Db::getInstance())->connect();
+        $this->db->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false);
+        $this->db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+
+        //----------- CREAZIONE DOMANDE -----------------
+
+        // Domande da nomi muscoli a gruppo
+        $sql = "SELECT * FROM muscoli WHERE funzione IS NOT NULL AND funzione != '' ORDER BY nome ASC";
+        $muscoli = $this->db->exec($sql);
+
+        //Utilita::DumpDie($muscoli);
+
+        $sql_gruppi = "SELECT funzione FROM muscoli WHERE funzione IS NOT NULL AND funzione != '' GROUP BY funzione ORDER BY funzione ASC";
+        $gruppi = $this->db->exec($sql_gruppi);
+
+        $d = [];
+
+        for ($c = 0; $c < count($muscoli); $c++) {
+            $muscolo = $muscoli[$c]['nome'];
+            $rispostaesatta = $muscoli[$c]['funzione'];
+
+            $gruppi_temp = [];
+            foreach ($gruppi as $g) {
+                if(!empty($g['funzione'])) {
+                    $gruppi_temp[] = $g['funzione'];
+                }                
+            }
+
+            // trova l'indice del gruppo del muscolo considerato
+            $indice_risposta_esatta = array_search($rispostaesatta, $gruppi_temp, true);
+            unset($gruppi_temp[$indice_risposta_esatta]);
+
+            shuffle($gruppi_temp);
+
+            $rispostaerrata1 = $gruppi_temp[0];
+            $rispostaerrata2 = $gruppi_temp[1];
+            $rispostaerrata3 = $gruppi_temp[2];
+            $d[] = new Domanda(0, "Qual è la funzione del muscolo: '" . $muscolo . "'", $rispostaesatta, $rispostaerrata1, $rispostaerrata2, $rispostaerrata3);
+        }
+
+        foreach ($d as $domanda) {
+            $sql = sprintf('INSERT INTO domande VALUES (NULL, "%s", "%s", "%s", "%s", "%s");', $domanda->domanda, $domanda->rispostaesatta, $domanda->rispostaerrata1, $domanda->rispostaerrata2, $domanda->rispostaerrata3);
+            //echo $sql . "<br>";
+            $this->db->exec($sql);
+        }
+
+        echo "ok";
+    }
 }

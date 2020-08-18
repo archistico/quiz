@@ -32,6 +32,9 @@ $f3->route('GET @migrazionimuscoli: /migrazioni/muscoli', '\App\Migrazioni->Musc
 $f3->route('GET @migrazionidomandegruppi: /migrazioni/domande/gruppi', '\App\Migrazioni->DomandeGruppi');
 $f3->route('GET @migrazionidomandemuscoli: /migrazioni/domande/nomegruppo', '\App\Migrazioni->DomandeNomeGruppo');
 $f3->route('GET @migrazionidomandedistali: /migrazioni/domande/nomedistale', '\App\Migrazioni->DomandeNomeDistale');
+$f3->route('GET @migrazionidomandeprossimali: /migrazioni/domande/nomeprossimale', '\App\Migrazioni->DomandeNomeProssimale');
+$f3->route('GET @migrazionidomandenervo: /migrazioni/domande/nomenervo', '\App\Migrazioni->DomandeNomeNervo');
+$f3->route('GET @migrazionidomandefunzione: /migrazioni/domande/nomefunzione', '\App\Migrazioni->DomandeNomeFunzione');
 
 $f3->run();
 
