@@ -143,13 +143,64 @@ class Migrazioni
             // trova l'indice del gruppo del muscolo considerato
             $indice_risposta_esatta = array_search($rispostaesatta, $gruppi_temp, true);
             unset($gruppi_temp[$indice_risposta_esatta]);
-            
+
             shuffle($gruppi_temp);
 
             $rispostaerrata1 = $gruppi_temp[0];
             $rispostaerrata2 = $gruppi_temp[1];
             $rispostaerrata3 = $gruppi_temp[2];
-            $d[] = new Domanda(0, "A quale gruppo appartiene: '".$muscolo."'", $rispostaesatta, $rispostaerrata1, $rispostaerrata2, $rispostaerrata3);
+            $d[] = new Domanda(0, "A quale gruppo appartiene: '" . $muscolo . "'", $rispostaesatta, $rispostaerrata1, $rispostaerrata2, $rispostaerrata3);
+        }
+
+        foreach ($d as $domanda) {
+            $sql = sprintf('INSERT INTO domande VALUES (NULL, "%s", "%s", "%s", "%s", "%s");', $domanda->domanda, $domanda->rispostaesatta, $domanda->rispostaerrata1, $domanda->rispostaerrata2, $domanda->rispostaerrata3);
+            //echo $sql . "<br>";
+            $this->db->exec($sql);
+        }
+
+        echo "ok";
+    }
+
+    public function DomandeNomeDistale($f3)
+    {
+        $this->db = (\App\Db::getInstance())->connect();
+        $this->db->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false);
+        $this->db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+
+        //----------- CREAZIONE DOMANDE -----------------
+
+        // Domande da nomi muscoli a gruppo
+        $sql = "SELECT * FROM muscoli WHERE distale IS NOT NULL AND distale != '' ORDER BY nome ASC";
+        $muscoli = $this->db->exec($sql);
+
+        //Utilita::DumpDie($muscoli);
+
+        $sql_gruppi = "SELECT distale FROM muscoli WHERE distale IS NOT NULL AND distale != '' GROUP BY distale ORDER BY distale ASC";
+        $gruppi = $this->db->exec($sql_gruppi);
+
+        $d = [];
+
+        for ($c = 0; $c < count($muscoli); $c++) {
+            $muscolo = $muscoli[$c]['nome'];
+            $rispostaesatta = $muscoli[$c]['distale'];
+
+            $gruppi_temp = [];
+            foreach ($gruppi as $g) {
+                if(!empty($g['distale'])) {
+                    $gruppi_temp[] = $g['distale'];
+                }                
+            }
+
+            // trova l'indice del gruppo del muscolo considerato
+            $indice_risposta_esatta = array_search($rispostaesatta, $gruppi_temp, true);
+            unset($gruppi_temp[$indice_risposta_esatta]);
+
+            shuffle($gruppi_temp);
+
+            $rispostaerrata1 = $gruppi_temp[0];
+            $rispostaerrata2 = $gruppi_temp[1];
+            $rispostaerrata3 = $gruppi_temp[2];
+            $d[] = new Domanda(0, "Qual è il distale del muscolo: '" . $muscolo . "'", $rispostaesatta, $rispostaerrata1, $rispostaerrata2, $rispostaerrata3);
         }
 
         foreach ($d as $domanda) {
