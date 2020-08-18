@@ -1,0 +1,24 @@
+<table>
+    <repeat group="{{ @domande }}" value="{{ @d }}">
+        <tr>
+            <td>#{{ @d.id }}</td>
+            <td>D: <strong>{{ @d.domanda }}?</strong></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td class="bg-success">R: {{ @d.rispostaesatta }}</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>R: {{ @d.rispostaerrata1 }}</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>R: {{ @d.rispostaerrata2 }}</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>R: {{ @d.rispostaerrata3 }}</td>
+        </tr>
+    </repeat>
+</table>
