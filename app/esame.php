@@ -296,7 +296,8 @@ class Esame
         // In trentesimi
         $sbagliate = $numero_domande-$corrette;
         $massimavotazione = 30;
-        $costo_sbagliate = 0.25;        
+        $costo_sbagliate = 0;
+        $ricavo_corrette = 1;   
                 
         $voto = round((($corrette-$sbagliate*$costo_sbagliate)/$numero_domande)*$massimavotazione);
         $corrette_impatto = round((($corrette)/$numero_domande)*$massimavotazione);
@@ -307,6 +308,7 @@ class Esame
         $f3->set('corrette', $corrette." (".$corrette_impatto.")");
         $f3->set('sbagliate', $sbagliate." (".$sbagliate_impatto.")");
         $f3->set('costo_sbagliate', ($costo_sbagliate/$numero_domande)*$massimavotazione);
+        $f3->set('ricavo_corrette', ($ricavo_corrette/$numero_domande)*$massimavotazione);
 
         $f3->set('nome', $nome);
         $f3->set('fattoil', $fattoil);

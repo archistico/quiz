@@ -32,6 +32,7 @@ $f3->route('GET @verifica: /verifica/@id', '\App\Esame->Verifica');
 $f3->route('GET @migrazionimuscoli: /migrazioni/muscoli', '\App\Migrazioni->Muscoli');
 $f3->route('GET @migrazionidomandegruppi: /migrazioni/domande/gruppi', '\App\Migrazioni->DomandeGruppi');
 $f3->route('GET @migrazionidomandemuscoli: /migrazioni/domande/nomegruppo', '\App\Migrazioni->DomandeNomeGruppo');
+$f3->route('GET @migrazionidomandedistali: /migrazioni/domande/nomedistale', '\App\Migrazioni->DomandeNomeDistale');
 
 $f3->run();
 
