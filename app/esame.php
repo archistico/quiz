@@ -294,7 +294,19 @@ class Esame
         }
 
         // In trentesimi
-        $votazione = sprintf("%d/30", ($corrette/$numero_domande)*30);
+        $sbagliate = $numero_domande-$corrette;
+        $massimavotazione = 30;
+        $costo_sbagliate = 0.25;        
+                
+        $voto = round((($corrette-$sbagliate*$costo_sbagliate)/$numero_domande)*$massimavotazione);
+        $corrette_impatto = round((($corrette)/$numero_domande)*$massimavotazione);
+        $sbagliate_impatto = round(((-$sbagliate*$costo_sbagliate)/$numero_domande)*$massimavotazione);
+
+        $votazione = sprintf("%d/30", $voto);
+
+        $f3->set('corrette', $corrette." (".$corrette_impatto.")");
+        $f3->set('sbagliate', $sbagliate." (".$sbagliate_impatto.")");
+        $f3->set('costo_sbagliate', ($costo_sbagliate/$numero_domande)*$massimavotazione);
 
         $f3->set('nome', $nome);
         $f3->set('fattoil', $fattoil);

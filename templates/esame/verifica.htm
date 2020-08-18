@@ -1,5 +1,8 @@
 <h2>Esame di {{ @nome }} del {{ @fattoil }}</h2>
-<h3>Voto finale: {{ @votazione }}</h3>
+<h3>Corrette: +1 | Sbagliate: -{{ @costo_sbagliate }}</h3>
+<h3>Risposte corrette: {{ @corrette }}</h3>
+<h3>Risposte sbagliate: {{ @sbagliate }}</h3>
+<h3><strong>Voto finale: {{ @votazione }}</strong></h3>
 <hr>
 <h4>Domande e risposte</h4>
 <table>
