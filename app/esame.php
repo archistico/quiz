@@ -67,6 +67,10 @@ class Esame
 
         $testo_domanda = $domanda['domanda'];
 
+        $sql = "SELECT * FROM esame WHERE id=$idesame";
+        $esame = ($db->exec($sql))[0];
+        $esame_numero_domande = (int)$esame['domande'];
+
         $o = (int)$ordine[0];
         switch ($o) {
             case 0:;
@@ -130,6 +134,16 @@ class Esame
                 $testo_risposta3 = $domanda['rispostaerrata3'];
                 break;
         }
+
+        $lista_domande = [];
+        for($c =0; $c<$esame_numero_domande; $c++) {
+            $t['domanda'] = $c;
+            $t['numero'] = $c+1;
+            $lista_domande[] = $t;
+        }
+
+        $f3->set('lista_domande', $lista_domande);
+        $f3->set('idesame', $idesame);
 
         $f3->set('numero_domanda', $numero_domanda + 1);
         $f3->set('domanda', $testo_domanda);

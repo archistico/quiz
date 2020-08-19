@@ -1,3 +1,7 @@
+<?php foreach (($lista_domande?:[]) as $l): ?>
+    <a href="<?= ($BASE) ?>/esame/<?= ($idesame) ?>/<?= ($l['domanda']) ?>"><?= ($l['numero']) ?></a> |
+<?php endforeach; ?>
+<hr>
 <form method="POST">
 
     <h3><?= ($numero_domanda) ?>) <?= ($domanda) ?>?</h3>

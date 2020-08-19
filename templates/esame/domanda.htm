@@ -1,3 +1,7 @@
+<repeat group="{{ @lista_domande }}" value="{{ @l }}">
+    <a href="{{ @BASE }}/esame/{{ @idesame }}/{{ @l.domanda }}">{{ @l.numero }}</a> |
+</repeat>
+<hr>
 <form method="POST">
 
     <h3>{{ @numero_domanda }}) {{ @domanda }}?</h3>
