@@ -59,6 +59,8 @@ class Esame
         $db = (\App\Db::getInstance())->connect();
         $sql = "SELECT * FROM esamedomande WHERE idesame=$idesame";
         $esamedomande = $db->exec($sql);
+        
+        $risposta_checked = $esamedomande[$numero_domanda]['risposta'];
 
         $iddomanda = $esamedomande[$numero_domanda]['iddomanda'];
         $ordine = $esamedomande[$numero_domanda]['ordine'];
@@ -141,6 +143,23 @@ class Esame
             $t['numero'] = $c+1;
             $lista_domande[] = $t;
         }
+
+        $risposta0_checked = null;
+        $risposta1_checked = null;
+        $risposta2_checked = null;
+        $risposta3_checked = null;
+
+        switch($risposta_checked) {
+            case '0': $risposta0_checked = "checked";break;
+            case '1': $risposta1_checked = "checked";break;
+            case '2': $risposta2_checked = "checked";break;
+            case '3': $risposta3_checked = "checked";break;
+        }
+
+        $f3->set('risposta0_checked', $risposta0_checked);
+        $f3->set('risposta1_checked', $risposta1_checked);
+        $f3->set('risposta2_checked', $risposta2_checked);
+        $f3->set('risposta3_checked', $risposta3_checked);
 
         $f3->set('lista_domande', $lista_domande);
         $f3->set('idesame', $idesame);
