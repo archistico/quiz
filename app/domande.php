@@ -17,4 +17,14 @@ class Domande
         $f3->set('contenuto', 'domande/lista.htm');
         echo \Template::instance()->render('templates/base.htm');
     }
+
+    public function Nuova($f3)
+    {
+        $materie = ['Muscoli arti inferiori'];
+
+        $f3->set('materie', $materie);
+        $f3->set('titolo', 'Nuova domanda');
+        $f3->set('contenuto', 'domande/nuova.htm');
+        echo \Template::instance()->render('templates/base.htm');
+    }
 }

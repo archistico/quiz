@@ -1,5 +1,3 @@
-<h1>Test - Anatomia</h1>
-<hr>
 <div>
     <h2>Muscoli arti inferiori</h2>
     <a href="<?= ($BASE) ?>/domande/">Lista di tutte le domande</a><br>
