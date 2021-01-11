@@ -3,14 +3,29 @@ namespace App;
 
 class Domande
 {
-    public function Lista($f3)
+    public function Lista($f3, $params)
     {
+        $materia_slug = $params['materia'];
+        $materie = [ 
+            [ 'nome' => 'Muscoli arti inferiori', 'slug'=> 'muscoli-arti-inferiori'], 
+            [ 'nome' => 'Fisiologia', 'slug'=> 'fisiologia'] 
+        ];
+        $materia = "";
+        
+        foreach($materie as $m) {
+            if($m['slug']==$materia_slug) {
+                $materia = $m['nome'];
+            }
+        }
+
         $lista_domande = [];
 
         $db = (\App\Db::getInstance())->connect();
 
-        $sql = "SELECT * FROM domande";
-        $lista_domande = ($db->exec($sql));
+        $sql = "SELECT * FROM domande WHERE materia = :materia";
+        $lista_domande = ($db->exec($sql, [
+            ':materia' => $materia
+            ]));
 
         array_walk_recursive($lista_domande, function(&$item) {
             $item = htmlspecialchars_decode($item, ENT_QUOTES);
@@ -24,7 +39,10 @@ class Domande
 
     public function Nuova($f3)
     {
-        $materie = ['Muscoli arti inferiori'];
+        $materie = [ 
+            [ 'nome' => 'Muscoli arti inferiori', 'slug'=> 'muscoli-arti-inferiori'], 
+            [ 'nome' => 'Fisiologia', 'slug'=> 'fisiologia'] 
+        ];
 
         $f3->set('materie', $materie);
         $f3->set('titolo', 'Nuova domanda');
@@ -44,15 +62,16 @@ class Domande
         
         $db = (\App\Db::getInstance())->connect();
 
-        $sql = "INSERT INTO domande VALUES (NULL, :domanda, :rispostaesatta, :rispostaerrata1, :rispostaerrata2, :rispostaerrata3);";
+        $sql = "INSERT INTO domande VALUES (NULL, :domanda, :rispostaesatta, :rispostaerrata1, :rispostaerrata2, :rispostaerrata3, :materia);";
         $db->exec($sql, [
             ':domanda'=>$domanda,
             ':rispostaesatta'=>$rispostaesatta,
             ':rispostaerrata1'=>$rispostaerrata1,
             ':rispostaerrata2'=>$rispostaerrata2,
-            ':rispostaerrata3'=>$rispostaerrata3
+            ':rispostaerrata3'=>$rispostaerrata3,
+            ':materia' =>$materia
             ]);
         
-        $f3->reroute("@domande");
+        $f3->reroute("@home");
     }
 }

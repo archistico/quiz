@@ -1,9 +1,9 @@
-<form method="POST">
+<form method="POST" action="{{ @BASE }}{{ 'domanderegistra' | alias }}">
     <div class="form-group">
         <label for="materia">Materia</label>
         <select class="form-control" id="materia" name="materia" required>
             <repeat group="{{ @materie }}" value="{{ @m }}">
-                <option value="{{ @m }}">{{ @m }}</option>
+                <option value="{{ @m.nome }}">{{ @m.nome }}</option>
             </repeat>
         </select>
     </div>
@@ -28,5 +28,5 @@
         <textarea class="form-control" id="rispostaerrata3" name="rispostaerrata3" rows="3" placeholder="Inserisci il testo corrispondente" required></textarea>
     </div>
     
-    <button type="submit" class="btn btn-primary btn-lg btn-block">INIZIA LA PROVA DA {{ @domande }} DOMANDE</button>
+    <button type="submit" class="btn btn-primary btn-lg btn-block">REGISTRA DOMANDA</button>
 </form>

@@ -5,6 +5,13 @@ class Home
 {
     public function Show($f3)
     {
+        $materie = [ 
+            [ 'nome' => 'Muscoli arti inferiori', 'slug'=> 'muscoli-arti-inferiori'], 
+            [ 'nome' => 'Fisiologia', 'slug'=> 'fisiologia'] 
+        ];
+
+        $f3->set('lista_materie', $materie);
+
         $lista_esami = [];
 
         $db = (\App\Db::getInstance())->connect();

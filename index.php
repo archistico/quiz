@@ -21,16 +21,19 @@ date_default_timezone_set('Europe/Rome');
 // ----------------------
 
 $f3->route('GET @home: /', '\App\Home->Show');
-$f3->route('GET @domande: /domande', '\App\Domande->Lista');
+
 $f3->route('GET @muscoli: /muscoli-arti-inferiori/@domande', '\App\Esame->MuscoliArtiInferiori');
 $f3->route('POST @muscoli_domande: /muscoli-arti-inferiori/@domande', '\App\Esame->MuscoliArtiInferiori_Domande');
 $f3->route('GET @esame: /esame/@id/@domanda', '\App\Esame->Domanda');
 $f3->route('POST @esame: /esame/@id/@domanda', '\App\Esame->RegistraRisposta');
 $f3->route('GET @verifica: /verifica/@id', '\App\Esame->Verifica');
 
+// DOMANDE
 $f3->route('GET @domandenuova: /domande/nuova', '\App\Domande->Nuova');
 $f3->route('POST @domanderegistra: /domande/nuova', '\App\Domande->Registra');
+$f3->route('GET @domande: /domande/@materia', '\App\Domande->Lista');
 
+// MIGRAZIONI
 $f3->route('GET @migrazionimuscoli: /migrazioni/muscoli', '\App\Migrazioni->Muscoli');
 $f3->route('GET @migrazionidomandegruppi: /migrazioni/domande/gruppi', '\App\Migrazioni->DomandeGruppi');
 $f3->route('GET @migrazionidomandemuscoli: /migrazioni/domande/nomegruppo', '\App\Migrazioni->DomandeNomeGruppo');

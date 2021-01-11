@@ -9,8 +9,9 @@ class Domanda
     public $rispostaerrata1;
     public $rispostaerrata2;
     public $rispostaerrata3;
+    public $materia;
 
-    public function __construct($id, $domanda, $rispostaesatta, $rispostaerrata1, $rispostaerrata2, $rispostaerrata3)
+    public function __construct($id, $domanda, $rispostaesatta, $rispostaerrata1, $rispostaerrata2, $rispostaerrata3, $materia)
     {
         $this->id = $id;
         $this->domanda = $domanda;
@@ -18,5 +19,6 @@ class Domanda
         $this->rispostaerrata1 = $rispostaerrata1;
         $this->rispostaerrata2 = $rispostaerrata2;
         $this->rispostaerrata3 = $rispostaerrata3;
+        $this->materia = $materia;
     }
 }
