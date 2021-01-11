@@ -1,17 +1,30 @@
+<?php foreach (($lista_domande?:[]) as $l): ?>
+    <a href="<?= ($BASE) ?>/esame/<?= ($idesame) ?>/<?= ($l['domanda']) ?>"><?= ($l['numero']) ?></a> |
+<?php endforeach; ?>
+<hr>
 <form method="POST">
-    
+
     <h3><?= ($numero_domanda) ?>) <?= ($domanda) ?>?</h3>
-    <input type="radio" name="risposta" value="0">
-    <label for="risposta"><?= ($risposta0) ?></label><br>
 
-    <input type="radio" name="risposta" value="1">
-    <label for="risposta"><?= ($risposta1) ?></label><br>
+    <div class="form-check">
+        <input class="form-check-input"  type="radio" name="risposta" value="0" id="risposta0" required <?= ($risposta0_checked) ?>>
+        <label class="form-check-label" for="risposta0"><?= ($risposta0) ?></label>
+    </div>
 
-    <input type="radio" name="risposta" value="2">
-    <label for="risposta"><?= ($risposta2) ?></label><br>
+    <div class="form-check">
+        <input class="form-check-input"  type="radio" name="risposta" value="1" id="risposta1" <?= ($risposta1_checked) ?>>
+        <label class="form-check-label" for="risposta1"><?= ($risposta1) ?></label>
+    </div>
 
-    <input type="radio" name="risposta" value="3">
-    <label for="risposta"><?= ($risposta3) ?></label><br>
+    <div class="form-check">
+        <input class="form-check-input"  type="radio" name="risposta" value="2" id="risposta2" <?= ($risposta2_checked) ?>>
+        <label class="form-check-label" for="risposta2"><?= ($risposta2) ?></label>
+    </div>
+
+    <div class="form-check">
+        <input class="form-check-input"  type="radio" name="risposta" value="3" id="risposta3" <?= ($risposta3_checked) ?>>
+        <label class="form-check-label" for="risposta3"><?= ($risposta3) ?></label>
+    </div>
 
     <button type="submit" class="btn btn-primary btn-lg btn-block mt-3">REGISTRA LA RISPOSTA</button>
 </form>
