@@ -1,4 +1,9 @@
 <div>
+    <h2>Domande</h2>
+    <a href="<?= ($BASE) ?>/domande/nuova">Aggiungi una nuova domanda</a><br>
+</div>
+<hr>
+<div>
     <h2>Muscoli arti inferiori</h2>
     <a href="<?= ($BASE) ?>/domande/">Lista di tutte le domande</a><br>
     <a href="<?= ($BASE) ?>/muscoli-arti-inferiori/10/">Esame da 10 domande</a><br>
