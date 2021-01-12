@@ -13,6 +13,8 @@ Risposte sbagliate: {{ @sbagliate }}</p>
         </tr>
         <tr>
             <td></td>
+            <check if="{{ @d.risposta0!='-' }}">
+                <true>
             <check if="{{ @d.risposta0==@d.risposta_corretta }}">
                 <true>
                     <check if="{{ @d.risposta0==@d.risposta }}">
@@ -34,10 +36,14 @@ Risposte sbagliate: {{ @sbagliate }}</p>
                         </false>
                     </check>
                 </false>
-            </check>            
+            </check>
+        </true>
+    </check>     
         </tr>
         <tr>
             <td></td>
+            <check if="{{ @d.risposta1!='-' }}">
+                <true>
             <check if="{{ @d.risposta1==@d.risposta_corretta }}">
                 <true>
                     <check if="{{ @d.risposta1==@d.risposta }}">
@@ -60,9 +66,13 @@ Risposte sbagliate: {{ @sbagliate }}</p>
                     </check>
                 </false>
             </check>
+        </true>
+    </check> 
         </tr>
         <tr>
             <td></td>
+            <check if="{{ @d.risposta2!='-' }}">
+                <true>
             <check if="{{ @d.risposta2==@d.risposta_corretta }}">
                 <true>
                     <check if="{{ @d.risposta2==@d.risposta }}">
@@ -85,9 +95,13 @@ Risposte sbagliate: {{ @sbagliate }}</p>
                     </check>
                 </false>
             </check>
+        </true>
+    </check> 
         </tr>
         <tr>
             <td></td>
+            <check if="{{ @d.risposta3!='-' }}">
+                <true>
             <check if="{{ @d.risposta3==@d.risposta_corretta }}">
                 <true>
                     <check if="{{ @d.risposta3==@d.risposta }}">
@@ -110,6 +124,8 @@ Risposte sbagliate: {{ @sbagliate }}</p>
                     </check>
                 </false>
             </check>
+        </true>
+    </check> 
         </tr>
         <tr>
             <td></td>
