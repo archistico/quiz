@@ -6,18 +6,31 @@ use DateTime;
 
 class Esame
 {
-    public function MuscoliArtiInferiori($f3, $params)
+    public function EsameIniziale($f3, $params)
     {
+        $materia_slug = $params['materia'];
+        $materie = [ 
+            [ 'nome' => 'Muscoli arti inferiori', 'slug'=> 'muscoli-arti-inferiori'], 
+            [ 'nome' => 'Fisiologia', 'slug'=> 'fisiologia'] 
+        ];
+        $materia = "";
+        
+        foreach($materie as $m) {
+            if($m['slug']==$materia_slug) {
+                $materia = $m['nome'];
+            }
+        }
+        
         $domande = $params['domande'];
-
+        
         $f3->set('domande', $domande);
-        $f3->set('materia', "Muscoli arti inferiori");
+        $f3->set('materia', $materia);
         $f3->set('titolo', 'Esame');
         $f3->set('contenuto', 'esame/iniziale.htm');
         echo \Template::instance()->render('templates/base.htm');
     }
 
-    public function MuscoliArtiInferiori_Domande($f3)
+    public function EsameDomande($f3)
     {
         $nome = $f3->get('POST.nome');
         $materia = $f3->get('POST.materia');
@@ -33,8 +46,10 @@ class Esame
         $sql = sprintf('INSERT INTO esame VALUES (%d, "%s", "%s", "%s", "%s");', $idesame, $nome, $materia, $data->format("Y-m-d H:i"), $numero_domande);
         $db->exec($sql);
 
-        $sql = "SELECT * FROM domande";
-        $domande = $db->exec($sql);
+        $sql = "SELECT * FROM domande WHERE materia=:materia";
+        $domande = $db->exec($sql, [
+            ':materia' => $materia
+            ]);
         shuffle($domande);
 
         $ordini = Utilita::Permuta("0123");

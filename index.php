@@ -22,8 +22,12 @@ date_default_timezone_set('Europe/Rome');
 
 $f3->route('GET @home: /', '\App\Home->Show');
 
-$f3->route('GET @muscoli: /muscoli-arti-inferiori/@domande', '\App\Esame->MuscoliArtiInferiori');
-$f3->route('POST @muscoli_domande: /muscoli-arti-inferiori/@domande', '\App\Esame->MuscoliArtiInferiori_Domande');
+
+
+$f3->route('GET @quiz: /quiz/@materia/@domande', '\App\Esame->EsameIniziale');
+$f3->route('POST @quiz_domande: /quiz/@materia/@domande', '\App\Esame->EsameDomande');
+
+// ESAMI
 $f3->route('GET @esame: /esame/@id/@domanda', '\App\Esame->Domanda');
 $f3->route('POST @esame: /esame/@id/@domanda', '\App\Esame->RegistraRisposta');
 $f3->route('GET @verifica: /verifica/@id', '\App\Esame->Verifica');
